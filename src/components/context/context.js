@@ -1,21 +1,55 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { dataReducer } from "../reducer/reducer";
+import { data } from "../../data";
 
-export const Context = createContext()
+export const Context = createContext();
 
-function ContextProvider({children}) {
+function ContextProvider({ children }) {
+  const initialState = {
+    meetupsData: data?.meetups,
+  };
 
-    const initialState = {
-        a:"working"
-    }
+  const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
+  const [modal, setModal] = useState(false);
 
-    const [dataState, dataDispatch] = useReducer(dataReducer, initialState);
+  const [filteredData, setFilteredData] = useState(data?.meetups);
+
+  const inputHandler = (e) => {
+    const searchValue = e.target.value;
+    const updatedData = data?.meetups?.filter(
+      (event) =>
+        event?.title?.toLowerCase()?.includes(searchValue?.toLowerCase()) ||
+        event?.eventTags?.some((item) =>
+          item.toLowerCase().includes(e?.target?.value.toLowerCase())
+        )
+    );
+    setFilteredData(updatedData);
+  };
+
+  const selectHandler = (e) => {
+    const selectedValue = e.target.value;
+    const updatedData = data?.meetups?.filter(
+      (event) => event?.eventType === selectedValue
+    );
+    selectedValue === "Both" ? setFilteredData(dataState?.meetupsData) : setFilteredData(updatedData)
+  };
 
   return (
-    <Context.Provider value={{dataState,dataDispatch}}>{children}</Context.Provider>
-  )
+    <Context.Provider
+      value={{
+        dataState,
+        dataDispatch,
+        inputHandler,
+        filteredData,
+        selectHandler,
+        modal,setModal
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
 }
 
 export default ContextProvider;
 
-export const useDataContext = () => useContext(Context)
+export const useDataContext = () => useContext(Context);

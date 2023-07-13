@@ -6,7 +6,7 @@ function LandingPage() {
     const {dataState}= useDataContext()
   return (
     <div>
-      <h3>home</h3>
+      <h3>MCR 8</h3>
       <input type="text" />
       <ProductCard/>
     </div>

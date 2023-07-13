@@ -43,7 +43,6 @@
   width: 100%;
   padding: 12px;
   text-align: center;
-  background-color: white;
   color: black;
   font-size: 16px;
   font-weight: bold;
@@ -55,6 +54,3 @@
   top: 0;
 }
 
-.product-card .product-button:hover {
-  background-color: #0057b31f;
-}

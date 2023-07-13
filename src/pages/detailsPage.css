@@ -21,7 +21,6 @@
 
 .pills{
     background-color: var(--primary-color);
-    width: 10%;
     color: white;
     border-radius: 8px;
     padding:1rem;
@@ -32,5 +31,16 @@
 
 .side-container{
     width: 50%;
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    text-align: left;
+    margin-left: 2rem;
 }
+
+.flex-child {
+    flex: 1;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+

@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 .App {
   text-align: center;
 }
 
-*{
+* {
   padding: 0rem;
   margin: 0rem;
   box-sizing: border-box;
-  font-family:'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
-  --primary-color:#F65858;
+  --primary-color: #f65858;
 }
 
-.product-container{
+.product-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }

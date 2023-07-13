@@ -35,7 +35,7 @@ function Page() {
   };
   return (
     <div className="container">
-      <div className="event-details-container">
+      <div className="flex-child event-details-container">
         <h3>{title}</h3>
         <p>
           Hosted By: <strong>{hostedBy}</strong>{" "}
@@ -61,28 +61,38 @@ function Page() {
           </p>
         ))}
       </div>
-      <div className="side-container">
-        <p>{moment(eventStartTime).format("MMMM Do YYYY, h:mm:ss a")}</p> to{" "}
-        <p>{moment(eventEndTime).format("MMMM Do YYYY, h:mm:ss a")}</p>
-        <p>{location}</p>
-        <p>{address}</p>
-        <p>₹{price}</p>
-        <h3>Speakers</h3>
+      <div className="flex-child side-container">
+        <div className="time">
+          <p>
+            {moment(eventStartTime).format("MMMM Do YYYY, h:mm:ss a")} to
+            {moment(eventEndTime).format("MMMM Do YYYY, h:mm:ss a")}
+          </p>
+          <p>{location}</p>
+          <p>{address}</p>
+          <p>₹{price}</p>
+        </div>
         <div>
+          <h3>Speakers</h3>
           {speakers?.map((data, index) => (
             <div key={index}>
-              <img className="img" width="80px" height="80px" src={data?.image} alt="img" />
+              <img
+                className="img"
+                width="80px"
+                height="80px"
+                src={data?.image}
+                alt="img"
+              />
               <p>{data?.name}</p>
               <p>{data?.designation}</p>
             </div>
           ))}
-        <button
-          onClick={() => setModal(!modal)}
-          className="save-button"
-          disabled={paid ? true : false}
-        >
-          {isPaid ? "Already RSVPED" : "RSVP"}
-        </button>
+          <button
+            onClick={() => setModal(!modal)}
+            className="save-button"
+            disabled={paid ? true : false}
+          >
+            {isPaid ? "Already RSVPED" : "RSVP"}
+          </button>
         </div>
       </div>
       {modal && <RsvpModal isOpen={openHandler} />}

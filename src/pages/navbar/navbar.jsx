@@ -15,7 +15,7 @@ function NavBar() {
 
   return (
     <div className="navbar-container">
-      <NavLink style={getActive} to="/">
+      <NavLink className="logo" style={getActive} to="/">
         Meetup
       </NavLink>
       <input placeholder="Search by Title and Event tags" type="text" onChange={inputHandler} />
